@@ -10,4 +10,10 @@ export class Member implements PrismaMember {
 
   @ApiProperty({ example: 25, description: 'メンバーの年齢' })
   age: number;
+
+  @ApiProperty({ example: '2024-08-30T18:29:56.170Z', description: '作成日時' })
+  created_at: Date;
+
+  @ApiProperty({ example: '2024-08-30T18:29:56.170Z', description: '更新日時' })
+  updated_at: Date;
 }

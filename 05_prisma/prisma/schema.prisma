@@ -13,7 +13,9 @@ datasource db {
 
 // メンバーテーブルの定義
 model Member {
-  id    Int     @id @default(autoincrement())
-  name  String
-  age   Int
+  id         Int      @default(autoincrement()) @id
+  name       String
+  age        Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
