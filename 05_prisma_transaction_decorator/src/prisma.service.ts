@@ -2,6 +2,9 @@ import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { AsyncLocalStorage } from 'async_hooks';
 import { PrismaClient } from '@prisma/client';
 
+/**
+ * Prismaサービス
+ */
 @Injectable()
 export class PrismaService
   extends PrismaClient

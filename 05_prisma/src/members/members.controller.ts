@@ -19,6 +19,9 @@ import {
 } from '@nestjs/swagger';
 import { Member } from './entities/member.entity';
 
+/**
+ * メンバーコントローラ
+ */
 @Controller('members')
 @ApiTags('/members') // APIのタイトル
 export class MembersController {

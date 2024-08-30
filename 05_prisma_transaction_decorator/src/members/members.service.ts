@@ -5,6 +5,9 @@ import { Member } from './entities/member.entity';
 import { PrismaService } from '../prisma.service';
 import { Transaction } from '../prisma.transaction';
 
+/**
+ * メンバーサービス
+ */
 @Injectable()
 export class MembersService {
   constructor(private prismaService: PrismaService) {}

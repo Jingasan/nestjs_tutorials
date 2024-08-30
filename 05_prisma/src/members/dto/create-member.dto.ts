@@ -1,6 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNumber } from 'class-validator';
 
+/**
+ * DTO
+ */
 export class CreateMemberDto {
   @ApiProperty({ example: 'アルファ太郎', description: 'メンバーの氏名' })
   @IsString()

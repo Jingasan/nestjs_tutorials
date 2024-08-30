@@ -1,6 +1,9 @@
 import { Member as PrismaMember } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
+/**
+ * エンティティ
+ */
 export class Member implements PrismaMember {
   @ApiProperty({ example: 1, description: 'メンバーID' })
   id: number;

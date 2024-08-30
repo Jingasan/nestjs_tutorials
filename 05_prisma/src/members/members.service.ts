@@ -4,6 +4,9 @@ import { UpdateMemberDto } from './dto/update-member.dto';
 import { Member } from './entities/member.entity';
 import { PrismaService } from '../prisma.service';
 
+/**
+ * メンバーサービス
+ */
 @Injectable()
 export class MembersService {
   constructor(private prismaService: PrismaService) {}
