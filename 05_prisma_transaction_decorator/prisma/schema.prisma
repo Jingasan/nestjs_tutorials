@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 接続先DB
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// メンバーテーブルの定義
+model Member {
+  id         Int      @default(autoincrement()) @id
+  name       String
+  age        Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
