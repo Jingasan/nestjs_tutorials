@@ -6,7 +6,7 @@ import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class MembersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prismaService: PrismaService) {}
 
   /**
    * メンバー情報の登録
@@ -16,7 +16,9 @@ export class MembersService {
   async create(createMemberDto: CreateMemberDto): Promise<Member> {
     const name = createMemberDto.name;
     const age = createMemberDto.age;
-    return await this.prisma.member.create({ data: { name, age } });
+    await this.prismaService.member.create({ data: { name, age } });
+    await this.findOne(10000);
+    return await this.prismaService.member.create({ data: { name, age } });
   }
 
   /**
@@ -24,7 +26,7 @@ export class MembersService {
    * @returns 全メンバー情報
    */
   async findAll(): Promise<Member[]> {
-    return await this.prisma.member.findMany();
+    return await this.prismaService.member.findMany();
   }
 
   /**
@@ -33,7 +35,10 @@ export class MembersService {
    * @returns メンバー情報
    */
   async findOne(id: number): Promise<Member> {
-    return await this.prisma.member.findUnique({ where: { id } });
+    const res = await this.prismaService.member.findUnique({ where: { id } });
+    // console.log(res);
+    // if (res === null) throw new Error('Error');
+    return res;
   }
 
   /**
@@ -45,7 +50,7 @@ export class MembersService {
   async update(id: number, updateMemberDto: UpdateMemberDto): Promise<Member> {
     const name = updateMemberDto.name;
     const age = updateMemberDto.age;
-    return await this.prisma.member.update({
+    return await this.prismaService.member.update({
       data: { name, age },
       where: { id },
     });
@@ -57,6 +62,6 @@ export class MembersService {
    * @returns 削除したメンバー情報
    */
   async remove(id: number): Promise<Member> {
-    return await this.prisma.member.delete({ where: { id } });
+    return await this.prismaService.member.delete({ where: { id } });
   }
 }
