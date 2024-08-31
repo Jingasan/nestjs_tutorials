@@ -1,12 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNumber } from 'class-validator';
+import { IsString, IsInt, Min, MinLength } from 'class-validator';
 
+/**
+ * DTO
+ */
 export class CreateMemberDto {
   @ApiProperty({ example: 'アルファ太郎', description: 'メンバーの氏名' })
   @IsString()
+  @MinLength(1)
   name: string;
 
   @ApiProperty({ example: 25, description: 'メンバーの年齢' })
-  @IsNumber()
+  @IsInt()
+  @Min(0)
   age: number;
 }
