@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     // Loggerの設定：配列に指定したログレベル以上のログが出力される。
     // false: 何も出力しない
-    // 指定可能なログレベル：debug, verbose, log, warn, error, fatal
+    // 指定可能なログレベル：verbose, debug, log, warn, error, fatal
     logger: ['debug'],
   });
   await app.listen(3000);
