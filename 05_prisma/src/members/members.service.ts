@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
 import { Member } from './entities/member.entity';
@@ -36,8 +36,13 @@ export class MembersService {
    * @returns メンバー情報
    */
   async findOne(id: number): Promise<Member> {
-    const res = await this.prismaService.member.findUnique({ where: { id } });
-    return res;
+    // 指定IDのメンバー情報を取得
+    const member = await this.prismaService.member.findUnique({
+      where: { id },
+    });
+    // 指定IDでメンバーが見つからない場合は400エラー
+    if (!member) throw new BadRequestException({ cause: 'USER_NOT_FOUND' });
+    return member;
   }
 
   /**
@@ -47,12 +52,16 @@ export class MembersService {
    * @returns 更新したメンバーの情報
    */
   async update(id: number, updateMemberDto: UpdateMemberDto): Promise<Member> {
+    // 指定IDのメンバー情報を更新
     const name = updateMemberDto.name;
     const age = updateMemberDto.age;
-    return await this.prismaService.member.update({
+    const member = await this.prismaService.member.update({
       data: { name, age },
       where: { id },
     });
+    // 指定IDでメンバーが見つからない場合は400エラー
+    if (!member) throw new BadRequestException({ cause: 'USER_NOT_FOUND' });
+    return member;
   }
 
   /**
@@ -61,6 +70,10 @@ export class MembersService {
    * @returns 削除したメンバー情報
    */
   async remove(id: number): Promise<Member> {
-    return await this.prismaService.member.delete({ where: { id } });
+    // 指定IDのメンバーを削除
+    const member = await this.prismaService.member.delete({ where: { id } });
+    // 指定IDでメンバーが見つからない場合は400エラー
+    if (!member) throw new BadRequestException({ cause: 'USER_NOT_FOUND' });
+    return member;
   }
 }

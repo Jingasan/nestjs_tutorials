@@ -78,6 +78,11 @@ export class MembersController {
     description: '指定されたIDのメンバー設定を返却',
     type: Member,
   })
+  @ApiResponse({
+    status: 400,
+    description: '指定IDのメンバーが存在しない',
+    example: { cause: 'USER_NOT_FOUND' },
+  })
   async findOne(@Param('id') id: string): Promise<Member> {
     return await this.membersService.findOne(+id);
   }
@@ -100,6 +105,11 @@ export class MembersController {
     status: 200,
     description: '更新後のメンバー設定を返却',
     type: Member,
+  })
+  @ApiResponse({
+    status: 400,
+    description: '指定IDのメンバーが存在しない',
+    example: { cause: 'USER_NOT_FOUND' },
   })
   async update(
     @Param('id') id: string,
@@ -125,6 +135,11 @@ export class MembersController {
     status: 200,
     description: '削除されたメンバーの設定を返却',
     type: Member,
+  })
+  @ApiResponse({
+    status: 400,
+    description: '指定IDのメンバーが存在しない',
+    example: { cause: 'USER_NOT_FOUND' },
   })
   async remove(@Param('id') id: string): Promise<Member> {
     return await this.membersService.remove(+id);
