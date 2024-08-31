@@ -3,9 +3,11 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
+// テスト区分
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
+  // テストの前準備
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
@@ -15,7 +17,9 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
+  // テスト１
   it('/ (GET)', () => {
+    // テスト項目
     return request(app.getHttpServer())
       .get('/')
       .expect(200)
