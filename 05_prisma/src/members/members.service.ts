@@ -39,8 +39,6 @@ export class MembersService {
    */
   async findOne(id: number): Promise<Member> {
     const res = await this.prismaService.member.findUnique({ where: { id } });
-    // console.log(res);
-    // if (res === null) throw new Error('Error');
     return res;
   }
 
