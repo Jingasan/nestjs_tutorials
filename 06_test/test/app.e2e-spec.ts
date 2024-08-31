@@ -4,7 +4,7 @@ import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
 // テスト区分
-describe('AppController (e2e)', () => {
+describe('E2ETest: AppController', () => {
   let app: INestApplication;
 
   // テストの前準備
