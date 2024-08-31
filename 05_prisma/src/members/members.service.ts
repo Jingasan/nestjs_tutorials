@@ -19,8 +19,6 @@ export class MembersService {
   async create(createMemberDto: CreateMemberDto): Promise<Member> {
     const name = createMemberDto.name;
     const age = createMemberDto.age;
-    await this.prismaService.member.create({ data: { name, age } });
-    await this.findOne(10000);
     return await this.prismaService.member.create({ data: { name, age } });
   }
 
