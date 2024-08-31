@@ -1,7 +1,7 @@
 import { AppService } from './app.service';
 
 // テスト区分
-describe('AppService', () => {
+describe('UnitTest: AppService', () => {
   // テストの前準備
   beforeEach(() => {});
 

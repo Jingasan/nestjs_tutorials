@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 // テスト区分
-describe('AppController', () => {
+describe('UnitTest: AppController', () => {
   let appService: AppService;
 
   // テストの前準備
