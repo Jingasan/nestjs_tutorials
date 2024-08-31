@@ -9,10 +9,10 @@ describe('AppController (e2e)', () => {
 
   // テストの前準備
   beforeEach(async () => {
+    // NestJSアプリを作成
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-
     app = moduleFixture.createNestApplication();
     await app.init();
   });
