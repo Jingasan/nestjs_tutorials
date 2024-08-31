@@ -1,5 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+/**
+ * メンバーエンティティ
+ */
 export class Member {
   @ApiProperty({ example: 1, description: 'メンバーID' })
   id: number;

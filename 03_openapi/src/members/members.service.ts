@@ -3,6 +3,9 @@ import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
 import { Member } from './entities/member.entity';
 
+/**
+ * メンバーサービス
+ */
 @Injectable()
 export class MembersService {
   private members: Member[] = [];

@@ -3,6 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MembersModule } from './members/members.module';
 
+/**
+ * Appモジュール
+ */
 @Module({
   imports: [MembersModule],
   controllers: [AppController],
