@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
 import { Member } from './entities/member.entity';
@@ -36,7 +36,11 @@ export class MembersService {
    * @returns メンバー情報
    */
   findOne(id: number): Member {
-    return this.members.find((user) => user.id === id);
+    // 指定IDのメンバー情報を取得
+    const member = this.members.find((user) => user.id === id);
+    // 指定IDでメンバーが見つからない場合は400エラー
+    if (!member) throw new BadRequestException({ cause: 'USER_NOT_FOUND' });
+    return member;
   }
 
   /**
@@ -46,6 +50,9 @@ export class MembersService {
    * @returns 更新したメンバーの情報
    */
   update(id: number, updateMemberDto: UpdateMemberDto): Member {
+    // 指定IDのメンバーが存在するかチェック
+    this.findOne(id);
+    // 指定IDのメンバー情報を更新
     const name = updateMemberDto.name;
     const age = updateMemberDto.age;
     const member: Member = { id, name, age };
@@ -59,7 +66,9 @@ export class MembersService {
    * @returns 削除したメンバー情報
    */
   remove(id: number): Member {
-    const member = this.members.find((user) => user.id === id);
+    // 指定IDのメンバーが存在するかチェック
+    const member = this.findOne(id);
+    // 指定IDのメンバーを削除
     this.members = this.members.filter((member) => member.id !== id);
     return member;
   }

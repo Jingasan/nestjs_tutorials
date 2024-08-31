@@ -75,6 +75,11 @@ export class MembersController {
     description: '指定されたIDのメンバー設定を返却',
     type: Member,
   })
+  @ApiResponse({
+    status: 400,
+    description: '指定IDのメンバーが存在しない',
+    example: { cause: 'USER_NOT_FOUND' },
+  })
   findOne(@Param('id') id: string) {
     return this.membersService.findOne(+id);
   }
@@ -98,6 +103,11 @@ export class MembersController {
     description: '更新後のメンバー設定を返却',
     type: Member,
   })
+  @ApiResponse({
+    status: 400,
+    description: '指定IDのメンバーが存在しない',
+    example: { cause: 'USER_NOT_FOUND' },
+  })
   update(@Param('id') id: string, @Body() updateMemberDto: UpdateMemberDto) {
     return this.membersService.update(+id, updateMemberDto);
   }
@@ -119,6 +129,11 @@ export class MembersController {
     status: 200,
     description: '削除されたメンバーの設定を返却',
     type: Member,
+  })
+  @ApiResponse({
+    status: 400,
+    description: '指定IDのメンバーが存在しない',
+    example: { cause: 'USER_NOT_FOUND' },
   })
   remove(@Param('id') id: string) {
     return this.membersService.remove(+id);
