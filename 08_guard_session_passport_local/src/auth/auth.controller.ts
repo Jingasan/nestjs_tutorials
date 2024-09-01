@@ -60,7 +60,7 @@ export class AuthController {
           console.error(err);
         }
       });
-      res.redirect('/');
+      res.redirect('/login');
     });
   }
 }
