@@ -1,9 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
+import {
+  ApiTags,
+  ApiProduces,
+  ApiOperation,
+  ApiResponse,
+} from '@nestjs/swagger';
 
 /**
  * Appコントローラ
  */
 @Controller()
+@ApiTags('/')
 export class AppController {
   constructor() {}
 
@@ -12,6 +19,9 @@ export class AppController {
    * @returns ログインページ
    */
   @Get()
+  @ApiProduces('application/json; charset=utf-8')
+  @ApiOperation({ summary: 'ログインページ取得API' })
+  @ApiResponse({ status: 200, description: 'ログインページ' })
   login(): string {
     return `<html>
       <body>

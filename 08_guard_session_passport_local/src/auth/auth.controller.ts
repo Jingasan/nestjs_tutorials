@@ -1,11 +1,18 @@
 import { Controller, UseGuards, Get, Post, Req, Res } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
 import { Request, Response } from 'express';
+import {
+  ApiTags,
+  ApiProduces,
+  ApiOperation,
+  ApiResponse,
+} from '@nestjs/swagger';
 
 /**
  * Authコントローラ
  */
 @Controller('auth')
+@ApiTags('/auth')
 export class AuthController {
   /**
    * ログインAPI
@@ -13,6 +20,9 @@ export class AuthController {
    */
   @UseGuards(LocalAuthGuard) // 認証を行うガードを設定
   @Post('login')
+  @ApiProduces('application/json; charset=utf-8')
+  @ApiOperation({ summary: 'ログインAPI' })
+  @ApiResponse({ status: 302, description: 'ログイン' })
   async login(@Res() res: Response) {
     res.redirect('/users'); // 認証成功時はユーザーページにリダイレクト
   }
@@ -23,6 +33,9 @@ export class AuthController {
    * @param res
    */
   @Get('logout')
+  @ApiProduces('application/json; charset=utf-8')
+  @ApiOperation({ summary: 'ログアウトAPI' })
+  @ApiResponse({ status: 302, description: 'ログアウト' })
   async logout(@Req() req: Request, @Res() res: Response): Promise<void> {
     // ログアウト
     req.logout((err) => {
