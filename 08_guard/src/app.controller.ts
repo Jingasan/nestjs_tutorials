@@ -6,13 +6,13 @@
  */
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
-import { AuthGuard } from './guard/auth.guard';
+import { AuthGuard } from './guard/auth/auth.guard';
 
 /**
  * Appコントローラ
  */
 @Controller()
-@UseGuards(AuthGuard) // コントローラクラスのすべてのメソッドにGuardを適用(Binding Guard)
+@UseGuards(AuthGuard) // コントローラクラスのすべてのメソッドにGuardを適用
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -20,6 +20,7 @@ export class AppController {
    * Hello World!を返すAPI
    * @returns Hello World!
    */
+  // @UseGuards(AuthGuard) // コントローラクラスの特定のメソッドにGuardを適用
   @Get()
   getHello(): string {
     return this.appService.getHello();

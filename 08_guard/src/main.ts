@@ -4,7 +4,7 @@
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-// import { AuthGuard } from './guard/auth.guard';
+// import { AuthGuard } from './guard/auth/auth.guard';
 
 /**
  * NestJS起動処理
