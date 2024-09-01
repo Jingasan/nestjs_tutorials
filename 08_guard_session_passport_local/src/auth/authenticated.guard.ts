@@ -17,7 +17,7 @@ export class AuthenticatedGuard implements CanActivate {
     // 未認証の場合
     else {
       const response = context.switchToHttp().getResponse();
-      response.redirect('/login'); // 認証されていない場合にログインページへリダイレクト
+      response.redirect('/'); // 認証されていない場合にログインページへリダイレクト
       // ガードを付与したルートへのアクセスを拒否
       return false;
     }

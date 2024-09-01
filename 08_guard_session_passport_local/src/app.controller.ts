@@ -1,15 +1,26 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 
 /**
  * Appコントローラ
  */
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor() {}
 
+  /**
+   * ログインページを返すAPI
+   * @returns ログインページ
+   */
   @Get()
-  getHelloWorld(): string {
-    return this.appService.getHelloWorld();
+  login(): string {
+    return `<html>
+      <body>
+        <form action="/auth/login" method="post">
+          <input type="text" name="username" placeholder="Username" required><br>
+          <input type="password" name="password" placeholder="Password" required><br>
+          <button type="submit">Login</button>
+        </form>
+      </body>
+    </html>`;
   }
 }
