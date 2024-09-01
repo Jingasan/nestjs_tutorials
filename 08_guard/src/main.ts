@@ -1,6 +1,8 @@
 /**
  * useGlobalGuards()：グローバルガード
  * アプリケーション全体のすべてのコントローラに対してGuardを適用する。
+ *
+ * https://docs.nestjs.com/guards#binding-guards
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
