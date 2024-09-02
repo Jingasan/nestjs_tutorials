@@ -23,7 +23,7 @@ export class AuthController {
   @ApiProduces('application/json; charset=utf-8')
   @ApiOperation({ summary: 'ログインAPI' })
   @ApiResponse({ status: 302, description: 'ユーザーページにリダイレクト' })
-  async login(@Res() res: Response) {
+  login(@Res() res: Response) {
     res.redirect('/users'); // 認証成功時はユーザーページにリダイレクト
   }
 
@@ -36,7 +36,7 @@ export class AuthController {
   @ApiProduces('application/json; charset=utf-8')
   @ApiOperation({ summary: 'ログアウトAPI' })
   @ApiResponse({ status: 302, description: 'ログインページにリダイレクト' })
-  async logout(@Req() req: Request, @Res() res: Response): Promise<void> {
+  logout(@Req() req: Request, @Res() res: Response): void {
     // ログアウト
     req.logout((err) => {
       if (err) {
